@@ -12,13 +12,35 @@ class Die {
 
     // generate the roll
     this.faceNum = Math.floor(Math.random() * 6) + 1;
+    var faceImgSrc = 'dice_images/inverted-dice-' + this.faceNum + '.png';
 
-    // set the source for the new image
-    this.faceImgSrc = 'dice_images/inverted-dice-' + this.faceNum + '.png';
+    // create a function to invert an image's colors
+    function toggleInvertImg(imageElement){
+      if (imageElement.style.filter == 'invert(100%)'){
+        imageElement.style.filter = 'invert(0%)';
+      } else {
+        imageElement.style.filter = 'invert(100%)';
+      }
+    }
 
-    // modify the image to the correct roll
+    // create a fuinction to make the die flash
+    function flashImg(imageElement){
+        var interval = setInterval(toggleInvertImg, 50, imageElement);
+
+        setTimeout(function(){
+          clearInterval(interval);
+        }, 200);
+
+    }
+
+    // get the dice's image element
     var faceImg = document.querySelector('#die');
-    faceImg.src = this.faceImgSrc;
+
+    // invert the colors
+    flashImg(faceImg);
+
+    // show the new roll
+    faceImg.src = faceImgSrc;
 
     return
     } 
