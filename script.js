@@ -25,22 +25,28 @@ class Die {
 
     // create a fuinction to make the die flash
     function flashImg(imageElement){
-        var interval = setInterval(toggleInvertImg, 50, imageElement);
+        var interval = setInterval(toggleInvertImg, 200, imageElement);
 
         setTimeout(function(){
           clearInterval(interval);
-        }, 200);
+        }, 800);
 
     }
 
     // get the dice's image element
     var faceImg = document.querySelector('#die');
 
+    // reset to ? die
+    faceImg.src = "dice_images/perspective-dice-six-faces-random.png"
+
+
     // invert the colors
     flashImg(faceImg);
 
     // show the new roll
-    faceImg.src = faceImgSrc;
+    setTimeout(function(){
+      faceImg.src = faceImgSrc;
+    }, 1000);
 
     return
     } 
